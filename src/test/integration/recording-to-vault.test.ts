@@ -8,9 +8,6 @@ import type { RecordingMeta } from "@/lib/witness-db";
 /* ------------------------------------------------------------------
  * Mock the cloud layer so the test stays offline / fast.
  * ------------------------------------------------------------------ */
-vi.mock("@/lib/cloud-recordings", () => ({
-  syncRecordingMetadata: vi.fn().mockResolvedValue(undefined),
-  deleteRecordingMetadata: vi.fn().mockResolvedValue(undefined),
 }));
 
 /* ------------------------------------------------------------------
@@ -82,7 +79,6 @@ class MockMediaRecorder extends EventTarget {
 }
 
 class MockMediaStream {
-  id = "mock-stream";
   getTracks() {
     return [];
   }
@@ -260,7 +256,6 @@ describe("Recording-to-Vault Integration", () => {
     expect(result.current.state).toBe("paused");
 
     // When the real recorder is paused it does not emit dataavailable.
-    // Our mock does not check state in emitChunk(), but the hook’s ondataavailable
     // handler is still registered, so the chunk would be saved.
     // We skip emitting during pause to match real behaviour.
 

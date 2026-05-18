@@ -8,14 +8,9 @@ export function useSession(): { session: Session | null; user: User | null; load
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check for mock session first
-    const mockSess = localStorage.getItem("sb-mock-session");
-    if (mockSess) {
       try {
-        const parsed = JSON.parse(mockSess);
         // Verify token exists and has 3 segments (standard JWT structure)
         if (!parsed.access_token || parsed.access_token.split(".").length !== 3) {
-            throw new Error("Invalid mock token structure");
         }
         setSession(parsed);
         setLoading(false);
@@ -25,10 +20,8 @@ export function useSession(): { session: Session | null; user: User | null; load
         (supabase.auth as any).getUser = async () => ({ data: { user: parsed.user }, error: null });
         return;
       } catch (e) {
-        console.error("Clearing corrupted mock session:", e);
         // Cleanup all auth-related keys
         Object.keys(localStorage).forEach((key) => {
-          if (key.startsWith("sb-") || key === "sb-mock-session") {
             localStorage.removeItem(key);
           }
         });
@@ -46,7 +39,6 @@ export function useSession(): { session: Session | null; user: User | null; load
         console.error("Corrupted session detected, clearing Auth keys.");
         // Find and remove all Supabase auth keys
         Object.keys(localStorage).forEach((key) => {
-          if (key.startsWith("sb-") || key === "sb-mock-session") {
             localStorage.removeItem(key);
           }
         });
@@ -84,7 +76,6 @@ export async function sendPhoneOtp(phone: string, opts?: SendOtpOptions) {
       shouldCreateUser: opts?.shouldCreateUser,
     },
   });
-  if (error) console.warn("[Supabase] native OTP failed, falling back to mock", error);
 }
 
 export async function verifyPhoneOtp(phone: string, token: string) {
@@ -93,12 +84,8 @@ export async function verifyPhoneOtp(phone: string, token: string) {
     console.log("[Mock] Verified! Saving fake session...");
     // Save a fake session to localStorage so the app thinks we are logged in
     const fakeSession = {
-      user: { id: "mock-user-id", phone: phone, email: "mock@example.com" },
-      access_token: "mock-token",
-      refresh_token: "mock-refresh",
       expires_at: Date.now() + 1000 * 60 * 60 * 24 * 7, // 7 days
     };
-    localStorage.setItem("sb-mock-session", JSON.stringify(fakeSession));
     // Also set the Supabase key just in case other parts of the app look there
     localStorage.setItem("sb-roazfxusdkoxiziijmgh-auth-token", JSON.stringify(fakeSession));
     return;

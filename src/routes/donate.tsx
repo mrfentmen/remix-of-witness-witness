@@ -105,7 +105,6 @@ interface GrantApp {
 
 const genId = () => `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
 
-// ── Canvas QR mock ──
 function drawMockQR(canvas: HTMLCanvasElement | null, address: string) {
   if (!canvas) return;
   const ctx = canvas.getContext("2d");

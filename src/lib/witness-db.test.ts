@@ -1,11 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 
-vi.mock("./cloud-recordings", () => ({
-  syncRecordingMetadata: vi.fn().mockResolvedValue(undefined),
-  syncRecordingS3Key: vi.fn().mockResolvedValue(undefined),
-  deleteRecordingMetadata: vi.fn().mockResolvedValue(undefined),
-  listCloudRecordings: vi.fn().mockResolvedValue([]),
-  recoverRecordingFromS3: vi.fn().mockResolvedValue(undefined),
 }));
 
 describe("witness-db", () => {

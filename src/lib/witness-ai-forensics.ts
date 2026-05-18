@@ -1,6 +1,5 @@
 // AI forensics helpers. Provides transcription-based phrase flagging, deepfake
 // score simulation, and AI incident summary generation. All are client-side
-// mocks usable until real ML backends are wired.
 
 export interface TranscriptionSegment {
   start: number;
@@ -42,7 +41,6 @@ const KEY_PHRASES = [
   "she has a gun",
 ];
 
-/** Generates a mock transcription with flagged key phrases. */
 export function generateMockTranscription(durationSeconds: number): TranscriptionSegment[] {
   const phrases: TranscriptionSegment[] = [
     {
@@ -84,7 +82,6 @@ export function flagPhrases(text: string): string[] {
   return KEY_PHRASES.filter((phrase) => lower.includes(phrase));
 }
 
-/** Generates a mock deepfake/integrity score. Always returns high authenticity. */
 export function generateDeepfakeScore(): DeepfakeScore {
   return {
     overall: 82 + Math.floor(Math.random() * 15),
@@ -95,7 +92,6 @@ export function generateDeepfakeScore(): DeepfakeScore {
   };
 }
 
-/** Generates a mock AI incident summary. */
 export function generateIncidentSummary(): IncidentSummary {
   return {
     who: "Two distinct audio-visual subjects confirmed",

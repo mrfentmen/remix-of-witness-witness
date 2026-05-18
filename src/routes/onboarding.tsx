@@ -41,9 +41,6 @@ function ProfileOnboardingScreen() {
       const { data } = await supabase.auth.getUser();
       if (!data.user) {
         // Mock user fallback for testing without real auth if needed
-        const mockSess = localStorage.getItem("sb-mock-session");
-        if (mockSess) {
-          const sess = JSON.parse(mockSess);
           setUser(sess.user);
         } else {
           void navigate({ to: "/signup" });
@@ -66,7 +63,6 @@ function ProfileOnboardingScreen() {
 
     setBusy(true);
     try {
-      if (user?.id !== "mock-user-id") {
         const { error } = await supabase
           .from("profiles")
           .update({

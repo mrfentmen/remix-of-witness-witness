@@ -1,26 +1,15 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 
-vi.mock("./s3-upload.functions", () => ({
-  getS3SignedUploadUrl: vi.fn().mockResolvedValue({
     uploadUrl: "https://s3.example.com/upload",
   }),
 }));
 
-vi.mock("./cloud-recordings", () => ({
-  syncRecordingS3Key: vi.fn().mockResolvedValue(undefined),
 }));
 
-vi.mock("./pwa", () => ({
-  requestBackgroundSync: vi.fn().mockResolvedValue(true),
 }));
 
-vi.mock("./network", () => ({
-  isWifiOrUnknown: vi.fn().mockReturnValue(true),
 }));
 
-vi.mock("./witness-storage", () => ({
-  getFlagWithDefault: vi.fn().mockReturnValue(false),
-  getString: vi.fn().mockReturnValue(null),
   setString: vi.fn(),
   STORAGE_KEYS: {
     wifiOnly: "@Witness_wifiOnly",
@@ -28,7 +17,6 @@ vi.mock("./witness-storage", () => ({
   },
 }));
 
-vi.mock("./witness-db", () => ({
   getRecordingRaw: vi.fn(),
 }));
 
@@ -60,7 +48,6 @@ function createMockXHR() {
     onabort: null,
     onloadend: null,
   };
-  xhr.send.mockImplementation(() => {
     setTimeout(() => {
       if (xhr.onload) xhr.onload();
     }, 10);
@@ -79,17 +66,13 @@ describe("witness-uploader", () => {
     uploaderModule = await import("./witness-uploader");
     dbModule = await import("./witness-db");
 
-    vi.mocked(dbModule.getRecordingRaw).mockReset().mockResolvedValue(null);
 
     vi.stubGlobal("XMLHttpRequest", function MockXMLHttpRequest() {
       return createMockXHR();
     } as unknown as typeof XMLHttpRequest);
 
-    // Reset shared mock defaults that may have been mutated by other tests
     const { isWifiOrUnknown } = await import("./network");
-    vi.mocked(isWifiOrUnknown).mockReturnValue(true);
     const { getFlagWithDefault } = await import("./witness-storage");
-    vi.mocked(getFlagWithDefault).mockReturnValue(false);
   });
 
   afterEach(() => {
@@ -120,7 +103,6 @@ describe("witness-uploader", () => {
     const cipher = new Uint8Array([1, 2, 3]).buffer;
     const iv = new Uint8Array([4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
 
-    vi.mocked(dbModule.getRecordingRaw).mockResolvedValue({
       meta: {
         id: "rec-1",
         createdAt: Date.now(),
@@ -145,10 +127,8 @@ describe("witness-uploader", () => {
 
   it("uploadRecording respects WiFi-only gate", async () => {
     const networkModule = await import("./network");
-    vi.mocked(networkModule.isWifiOrUnknown).mockReturnValue(false);
 
     const storageModule = await import("./witness-storage");
-    vi.mocked(storageModule.getFlagWithDefault).mockReturnValue(true);
 
     const { uploadRecording, getUploadState } = uploaderModule;
     await uploadRecording("rec-wifi");
@@ -156,7 +136,6 @@ describe("witness-uploader", () => {
   });
 
   it("retryPendingUploads retries errored uploads", async () => {
-    vi.mocked(dbModule.getRecordingRaw).mockResolvedValue(null);
 
     const { uploadRecording, retryPendingUploads, getUploadState } = uploaderModule;
 
@@ -167,7 +146,6 @@ describe("witness-uploader", () => {
     }
     expect(getUploadState("retry-id").status).toBe("error");
 
-    vi.mocked(dbModule.getRecordingRaw).mockResolvedValue({
       meta: {
         id: "retry-id",
         createdAt: Date.now(),

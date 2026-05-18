@@ -41,7 +41,6 @@ Object.defineProperty(globalThis, "localStorage", {
   configurable: true,
 });
 
-// Minimal navigator mock for network.ts
 Object.defineProperty(globalThis, "navigator", {
   value: {
     connection: null,
@@ -62,7 +61,6 @@ Object.defineProperty(globalThis, "window", {
   configurable: true,
 });
 
-// Minimal document mock for hook tests that run in node env (non-jsdom)
 if (typeof document === "undefined") {
   Object.defineProperty(globalThis, "document", {
     value: {

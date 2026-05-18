@@ -25,7 +25,6 @@ if (typeof window !== "undefined") {
           const user = parsed?.user;
           const token = parsed?.access_token ?? parsed;
           
-          const isMockId = user?.id === "mock-user-id" || user?.id === "user_123";
           const isInvalidToken = typeof token !== "string" || token.split(".").length !== 3;
 
           if (isMockId || isInvalidToken) {
@@ -36,7 +35,6 @@ if (typeof window !== "undefined") {
         keysToRemove.push(key);
       }
     }
-    if (key === "sb-mock-session") keysToRemove.push(key);
   }
 
   keysToRemove.forEach(k => localStorage.removeItem(k));

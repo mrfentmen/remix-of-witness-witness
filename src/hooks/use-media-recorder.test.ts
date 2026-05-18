@@ -3,10 +3,6 @@ import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { renderHook, act, waitFor } from "@testing-library/react";
 import { useMediaRecorder } from "./use-media-recorder";
 
-vi.mock("@/lib/witness-db", () => ({
-  startRecordingSession: vi.fn().mockResolvedValue("session-123"),
-  saveRecordingChunk: vi.fn().mockResolvedValue(undefined),
-  finalizeRecordingSession: vi.fn().mockResolvedValue({
     id: "session-123",
     createdAt: Date.now(),
     durationMs: 1000,
@@ -17,7 +13,6 @@ vi.mock("@/lib/witness-db", () => ({
     gps: null,
     thumbnailDataUrl: null,
   }),
-  getRecordingBlob: vi.fn().mockResolvedValue({
     meta: {
       id: "session-123",
       createdAt: Date.now(),
@@ -31,8 +26,6 @@ vi.mock("@/lib/witness-db", () => ({
     },
     blob: new Blob(["test"], { type: "video/webm" }),
   }),
-  recoverUnfinalizedSessions: vi.fn().mockResolvedValue([]),
-  discardSession: vi.fn().mockResolvedValue(undefined),
 }));
 
 class MockBlobEvent extends Event {
@@ -96,7 +89,6 @@ class MockMediaRecorder extends EventTarget {
 }
 
 class MockMediaStream {
-  id = "mock-stream";
   getTracks() {
     return [];
   }
@@ -178,7 +170,6 @@ describe("useMediaRecorder", () => {
 
   it("shows recoverable session when unfinalized sessions exist", async () => {
     const dbModule = await import("@/lib/witness-db");
-    vi.mocked(dbModule.recoverUnfinalizedSessions).mockResolvedValue([
       {
         sessionId: "crash-id",
         startedAt: Date.now() - 60000,
@@ -211,7 +202,6 @@ describe("useMediaRecorder", () => {
 
   it("dismisses recovery session", async () => {
     const dbModule = await import("@/lib/witness-db");
-    vi.mocked(dbModule.recoverUnfinalizedSessions).mockResolvedValue([
       {
         sessionId: "discard-id",
         startedAt: Date.now() - 30000,

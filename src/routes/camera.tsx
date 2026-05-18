@@ -395,8 +395,6 @@ function CameraScreen() {
         return;
       }
 
-      // Check for mock session first
-      if (localStorage.getItem("sb-mock-session")) {
         setBootChecked(true);
         return;
       }
