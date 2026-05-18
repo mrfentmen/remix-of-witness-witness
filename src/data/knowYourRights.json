@@ -1,0 +1,452 @@
+[
+  {
+    "state": "Alabama",
+    "stateCode": "AL",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (11th Cir.)",
+    "keyCaseOrLaw": "Smith v. Cumming",
+    "bufferZoneRisk": "General 'Stop & Identify' state",
+    "plainEnglishSummary": "In Alabama, you have the right to record police in public because you are one of the parties in the conversation. Police cannot delete your footage, but they may ask for your ID if they have reasonable suspicion. Stay calm, keep recording, and do not physically interfere."
+  },
+  {
+    "state": "Alaska",
+    "stateCode": "AK",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (9th Cir.)",
+    "keyCaseOrLaw": "Fordyce v. Seattle",
+    "bufferZoneRisk": "9th Cir. rules 1-party is for 3rd parties only",
+    "plainEnglishSummary": "In Alaska, you can record police officers in public as long as you are not interfering. The 9th Circuit protects your right to film. If an officer tells you to step back, do so calmly but continue recording from a safe distance."
+  },
+  {
+    "state": "Arizona",
+    "stateCode": "AZ",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (9th Cir.)",
+    "keyCaseOrLaw": "8-ft law struck down",
+    "bufferZoneRisk": "Struck down 2022 buffer law",
+    "plainEnglishSummary": "In Arizona, you have the right to record police in public. A court struck down a law that tried to create an 8-foot buffer zone. If an officer orders you to back up, obey but keep your camera rolling."
+  },
+  {
+    "state": "Arkansas",
+    "stateCode": "AR",
+    "consentLaw": "One-Party",
+    "legalStatus": "Unsettled (8th Cir.)",
+    "keyCaseOrLaw": "Molina v. Book (8th Cir.)",
+    "bufferZoneRisk": "8th Cir. found 'passive observation' not established",
+    "plainEnglishSummary": "In Arkansas, the law is less clear, but the 8th Circuit has said passive observation may not be clearly protected. It is still wise to record openly without interfering. If stopped, say you are recording and remain silent until you can speak with a lawyer."
+  },
+  {
+    "state": "California",
+    "stateCode": "CA",
+    "consentLaw": "All-Party",
+    "legalStatus": "Established (9th Cir.)",
+    "keyCaseOrLaw": "Fordyce v. Seattle",
+    "bufferZoneRisk": "High risk: Journalist equipment seized at 2025/26 protests",
+    "plainEnglishSummary": "In California, all parties must technically consent to recording, but courts usually make exceptions for on‑duty police in public. Record openly and do not go behind police lines. If an officer tries to take your phone, do not resist – state clearly that you do not consent and contact a lawyer as soon as possible."
+  },
+  {
+    "state": "Colorado",
+    "stateCode": "CO",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (10th Cir.)",
+    "keyCaseOrLaw": "Irizarry v. Yehia (2022)",
+    "bufferZoneRisk": "10th Cir. rejected qualified immunity for interference",
+    "plainEnglishSummary": "In Colorado, you have a clear right to record police in public. The 10th Circuit has ruled that officers cannot interfere with this right. Stay at a safe distance, keep recording, and do not physically obstruct the officers."
+  },
+  {
+    "state": "Connecticut",
+    "stateCode": "CT",
+    "consentLaw": "All-Party (Phone)",
+    "legalStatus": "Unsettled (2nd Cir.)",
+    "keyCaseOrLaw": "Massimino v. Benoit (2026)",
+    "bufferZoneRisk": "2nd Cir. appeal pending regarding police station filming",
+    "plainEnglishSummary": "In Connecticut, the law is still developing, but you have a reasonable right to record police on public streets. The 2nd Circuit is currently reviewing a case about filming at police stations. Record openly and do not trespass. If confronted, stay calm and ask for a lawyer."
+  },
+  {
+    "state": "Delaware",
+    "stateCode": "DE",
+    "consentLaw": "All-Party",
+    "legalStatus": "Established (3rd Cir.)",
+    "keyCaseOrLaw": "Fields v. Philadelphia",
+    "bufferZoneRisk": "Standard all-party consent applies",
+    "plainEnglishSummary": "In Delaware, all parties must consent to recording, but the 3rd Circuit protects the right to film on‑duty police in public. Record openly and do not hide your camera. If an officer orders you to move back, comply but keep recording."
+  },
+  {
+    "state": "Florida",
+    "stateCode": "FL",
+    "consentLaw": "All-Party",
+    "legalStatus": "Established (11th Cir.)",
+    "keyCaseOrLaw": "\"Halo Law\" (2025)",
+    "bufferZoneRisk": "25-ft Buffer Zone in effect since Jan 1, 2025",
+    "plainEnglishSummary": "In Florida, you have the right to record police, but a new law requires you to stay at least 25 feet away if an officer orders you to back up. Comply with distance orders but keep your phone rolling. Do not delete your footage – it is your best evidence."
+  },
+  {
+    "state": "Georgia",
+    "stateCode": "GA",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (11th Cir.)",
+    "keyCaseOrLaw": "Smith v. Cumming",
+    "bufferZoneRisk": "Standard 1-party rules",
+    "plainEnglishSummary": "In Georgia, you can record police in public because you are part of the interaction. Do not interfere with their work. If an officer tells you to stop recording, calmly state that you have a right to film and are not obstructing."
+  },
+  {
+    "state": "Hawaii",
+    "stateCode": "HI",
+    "consentLaw": "Mixed",
+    "legalStatus": "Established (9th Cir.)",
+    "keyCaseOrLaw": "Fordyce v. Seattle",
+    "bufferZoneRisk": "2-party consent if device in 'private place'",
+    "plainEnglishSummary": "In Hawaii, recording in a public space is generally protected. However, if you are in a private place (like someone's home), all parties must consent. For police on the street, you can record openly. Stay visible and do not hide your camera."
+  },
+  {
+    "state": "Idaho",
+    "stateCode": "ID",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (9th Cir.)",
+    "keyCaseOrLaw": "Fordyce v. Seattle",
+    "bufferZoneRisk": "Standard 1-party rules",
+    "plainEnglishSummary": "In Idaho, you have the right to record police in public as long as you do not interfere. The 9th Circuit protects your right to film. Keep a safe distance and do not touch any officer or equipment."
+  },
+  {
+    "state": "Illinois",
+    "stateCode": "IL",
+    "consentLaw": "All-Party (Oral)",
+    "legalStatus": "Established (7th Cir.)",
+    "keyCaseOrLaw": "ACLU v. Alvarez (2012)",
+    "bufferZoneRisk": "Risk: Equipment seized/damaged at 2025 protests",
+    "plainEnglishSummary": "In Illinois, the 7th Circuit struck down an eavesdropping law that banned recording police. You can record openly. However, at protests there is a risk of equipment seizure. Auto‑sync your footage to the cloud immediately so it cannot be destroyed."
+  },
+  {
+    "state": "Indiana",
+    "stateCode": "IN",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (7th Cir.)",
+    "keyCaseOrLaw": "25-ft law struck down 2025",
+    "bufferZoneRisk": "Court ruled 25-ft buffer unconstitutionally vague",
+    "plainEnglishSummary": "In Indiana, a court struck down a 25‑foot buffer zone law, so you can record from a reasonable distance. You have a First Amendment right to film police in public. If an officer orders you to step back, obey but keep recording."
+  },
+  {
+    "state": "Iowa",
+    "stateCode": "IA",
+    "consentLaw": "One-Party",
+    "legalStatus": "Unsettled (8th Cir.)",
+    "keyCaseOrLaw": "Chestnut v. Wallace",
+    "bufferZoneRisk": "Standard 1-party rules",
+    "plainEnglishSummary": "In Iowa, the law is not fully settled, but you can still record police as long as you do not interfere. The 8th Circuit has not yet given clear protection, so be extra careful. Do not argue – just record and stay silent."
+  },
+  {
+    "state": "Kansas",
+    "stateCode": "KS",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (10th Cir.)",
+    "keyCaseOrLaw": "25-ft 'Safe Zone' (2026)",
+    "bufferZoneRisk": "25-ft Buffer Zone created by 2026 veto override",
+    "plainEnglishSummary": "In Kansas, a new law creates a 25‑foot buffer zone if an officer orders you to move back. You must comply, but you can continue recording from that distance. Do not cross police lines or refuse to back up – that could lead to arrest."
+  },
+  {
+    "state": "Kentucky",
+    "stateCode": "KY",
+    "consentLaw": "One-Party",
+    "legalStatus": "Unsettled (6th Cir.)",
+    "keyCaseOrLaw": "Whiting v. Athens (2026)",
+    "bufferZoneRisk": "6th Cir. still has 'artificial split' on status",
+    "plainEnglishSummary": "In Kentucky, the 6th Circuit is split on whether the right to record is clearly established. It is safer to record openly and without hiding. If police interfere, do not resist – remember details and contact a civil rights lawyer afterward."
+  },
+  {
+    "state": "Louisiana",
+    "stateCode": "LA",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (5th Cir.)",
+    "keyCaseOrLaw": "25-ft law blocked 2025",
+    "bufferZoneRisk": "Court blocked 25-ft buffer law in Jan 2025",
+    "plainEnglishSummary": "In Louisiana, a court blocked a 25‑foot buffer law, so your right to record at a reasonable distance is protected. The 5th Circuit has affirmed the right to film police. Stay calm and keep your camera steady."
+  },
+  {
+    "state": "Maine",
+    "stateCode": "ME",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (1st Cir.)",
+    "keyCaseOrLaw": "Martin v. Rollins",
+    "bufferZoneRisk": "Right to record secretly established",
+    "plainEnglishSummary": "In Maine, the 1st Circuit has upheld your right to secretly record on‑duty police in public. Even if the officer does not know you are recording, the footage can be used as evidence. Do not obstruct or interfere."
+  },
+  {
+    "state": "Maryland",
+    "stateCode": "MD",
+    "consentLaw": "All-Party",
+    "legalStatus": "Established (4th Cir.)",
+    "keyCaseOrLaw": "Sharpe v. Winterville",
+    "bufferZoneRisk": "High risk: Video deleted by police in Baltimore",
+    "plainEnglishSummary": "In Maryland, the 4th Circuit protects your right to record police. However, there have been cases where officers deleted footage. Always auto‑sync your video to the cloud immediately. If police take your phone, state clearly that you do not consent to a search."
+  },
+  {
+    "state": "Massachusetts",
+    "stateCode": "MA",
+    "consentLaw": "All-Party",
+    "legalStatus": "Established (1st Cir.)",
+    "keyCaseOrLaw": "Martin v. Rollins (2021)",
+    "bufferZoneRisk": "Court upheld right to secretly record on-duty police",
+    "plainEnglishSummary": "In Massachusetts, you have the right to secretly record police officers performing their duties in public. You do not need to tell them you are recording. Keep your phone steady and do not interfere with their actions."
+  },
+  {
+    "state": "Michigan",
+    "stateCode": "MI",
+    "consentLaw": "One-Party",
+    "legalStatus": "Unsettled (6th Cir.)",
+    "keyCaseOrLaw": "AFT v. Project Veritas",
+    "bufferZoneRisk": "Standard 1-party rules",
+    "plainEnglishSummary": "In Michigan, the right to record police is not yet fully settled in the 6th Circuit, but you can still record openly. Stay at a safe distance and do not obstruct. If an officer demands you stop, politely say you believe you have a right to film."
+  },
+  {
+    "state": "Minnesota",
+    "stateCode": "MN",
+    "consentLaw": "One-Party",
+    "legalStatus": "Unsettled (8th Cir.)",
+    "keyCaseOrLaw": "George Floyd case",
+    "bufferZoneRisk": "High risk: Don Lemon equipment seized 2026",
+    "plainEnglishSummary": "In Minnesota, after George Floyd, the importance of video evidence is clear. However, the 8th Circuit has not fully protected the right to record. Back up your footage immediately to the cloud. If police try to seize your phone, do not resist but verbally refuse consent."
+  },
+  {
+    "state": "Mississippi",
+    "stateCode": "MS",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (5th Cir.)",
+    "keyCaseOrLaw": "Turner v. Driver",
+    "bufferZoneRisk": "Standard 1-party rules",
+    "plainEnglishSummary": "In Mississippi, the 5th Circuit has affirmed your right to record police in public. You do not need to tell them you are recording. Keep your hands visible and do not interfere. If you are arrested for recording, mention Turner v. Driver to your lawyer."
+  },
+  {
+    "state": "Missouri",
+    "stateCode": "MO",
+    "consentLaw": "One-Party",
+    "legalStatus": "Unsettled (8th Cir.)",
+    "keyCaseOrLaw": "Molina v. Book (2025)",
+    "bufferZoneRisk": "8th Cir. found right to observe not clearly established",
+    "plainEnglishSummary": "In Missouri, the 8th Circuit has said the right to passively observe police is not clearly established. Be cautious. Record openly but do not argue. If detained, remain silent and ask for a lawyer immediately."
+  },
+  {
+    "state": "Montana",
+    "stateCode": "MT",
+    "consentLaw": "All-Party",
+    "legalStatus": "Established (9th Cir.)",
+    "keyCaseOrLaw": "Fordyce v. Seattle",
+    "bufferZoneRisk": "Notification only required",
+    "plainEnglishSummary": "In Montana, you need to notify others if you are recording, but on‑duty police in public have a lower expectation of privacy. Record openly. If an officer asks, you can say you are recording. Do not obstruct."
+  },
+  {
+    "state": "Nebraska",
+    "stateCode": "NE",
+    "consentLaw": "One-Party",
+    "legalStatus": "Unsettled (8th Cir.)",
+    "keyCaseOrLaw": "Molina v. Book",
+    "bufferZoneRisk": "Standard 1-party rules",
+    "plainEnglishSummary": "In Nebraska, the law is uncertain in the 8th Circuit. You can still record as long as you do not interfere. Keep a safe distance and do not hide your phone. If police tell you to stop, comply but ask for a lawyer later."
+  },
+  {
+    "state": "Nevada",
+    "stateCode": "NV",
+    "consentLaw": "All-Party (Phone)",
+    "legalStatus": "Established (9th Cir.)",
+    "keyCaseOrLaw": "Fordyce v. Seattle",
+    "bufferZoneRisk": "Phone requires all-party; in-person is 1-party",
+    "plainEnglishSummary": "In Nevada, recording in person is one‑party consent, but phone calls require all‑party consent. For filming police on the street, you can record openly. Stay calm and do not physically interfere."
+  },
+  {
+    "state": "New Hampshire",
+    "stateCode": "NH",
+    "consentLaw": "All-Party",
+    "legalStatus": "Established (1st Cir.)",
+    "keyCaseOrLaw": "Martin v. Rollins",
+    "bufferZoneRisk": "Standard all-party rules",
+    "plainEnglishSummary": "In New Hampshire, all parties must consent to recording, but the 1st Circuit makes an exception for on‑duty police in public. You can record openly. Do not hide your camera, and do not obstruct the officers."
+  },
+  {
+    "state": "New Jersey",
+    "stateCode": "NJ",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (3rd Cir.)",
+    "keyCaseOrLaw": "Fields v. Philadelphia",
+    "bufferZoneRisk": "Risk: Officer attempted phone seizure in Vineland",
+    "plainEnglishSummary": "In New Jersey, the 3rd Circuit protects your right to record police. However, officers have tried to seize phones before. Always sync your footage to the cloud immediately. If your phone is taken, say loudly that you do not consent to a search."
+  },
+  {
+    "state": "New Mexico",
+    "stateCode": "NM",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (10th Cir.)",
+    "keyCaseOrLaw": "Irizarry v. Yehia",
+    "bufferZoneRisk": "Standard 1-party rules",
+    "plainEnglishSummary": "In New Mexico, you have the right to record police in public. The 10th Circuit has rejected qualified immunity for officers who interfere. Stay at a safe distance, keep recording, and do not argue."
+  },
+  {
+    "state": "New York",
+    "stateCode": "NY",
+    "consentLaw": "One-Party",
+    "legalStatus": "Unsettled (2nd Cir.)",
+    "keyCaseOrLaw": "15-ft law proposed 2026",
+    "bufferZoneRisk": "Risk: 15-ft Buffer Zone proposed in April 2026",
+    "plainEnglishSummary": "In New York, the right to record police is likely protected, but the 2nd Circuit has not fully settled it. A 15‑foot buffer zone has been proposed. If an officer orders you to step back, comply but keep recording from that distance."
+  },
+  {
+    "state": "North Carolina",
+    "stateCode": "NC",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (4th Cir.)",
+    "keyCaseOrLaw": "Sharpe v. Winterville (2023)",
+    "bufferZoneRisk": "Established right to livestream traffic stops",
+    "plainEnglishSummary": "In North Carolina, the 4th Circuit has affirmed your right to record police, including livestreaming traffic stops. You can record openly without permission. Do not exit your vehicle unless told to do so, and keep your phone visible."
+  },
+  {
+    "state": "North Dakota",
+    "stateCode": "ND",
+    "consentLaw": "One-Party",
+    "legalStatus": "Unsettled (8th Cir.)",
+    "keyCaseOrLaw": "Molina v. Book",
+    "bufferZoneRisk": "Standard 1-party rules",
+    "plainEnglishSummary": "In North Dakota, the right to record police is not clearly settled in the 8th Circuit. Record openly but be prepared for possible pushback. Stay silent and ask for a lawyer if detained. Back up your footage immediately."
+  },
+  {
+    "state": "Ohio",
+    "stateCode": "OH",
+    "consentLaw": "One-Party",
+    "legalStatus": "Unsettled (6th Cir.)",
+    "keyCaseOrLaw": "Whiting v. Athens",
+    "bufferZoneRisk": "Standard 1-party rules",
+    "plainEnglishSummary": "In Ohio, the 6th Circuit has not fully decided the right to record police. You can still record as long as you do not interfere. Do not hide your phone. If an officer demands you stop, politely say you are documenting a public interaction."
+  },
+  {
+    "state": "Oklahoma",
+    "stateCode": "OK",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (10th Cir.)",
+    "keyCaseOrLaw": "Irizarry v. Yehia",
+    "bufferZoneRisk": "Standard 1-party rules",
+    "plainEnglishSummary": "In Oklahoma, the 10th Circuit protects your right to record police in public. You do not need permission. Keep a safe distance and do not physically block officers. If arrested for recording, mention Irizarry v. Yehia to your lawyer."
+  },
+  {
+    "state": "Oregon",
+    "stateCode": "OR",
+    "consentLaw": "All-Party (Person)",
+    "legalStatus": "Established (9th Cir.)",
+    "keyCaseOrLaw": "Project Veritas (2023)",
+    "bufferZoneRisk": "All-party for in-person; 1-party for phone",
+    "plainEnglishSummary": "In Oregon, in‑person recording requires all parties to consent, but the 9th Circuit protects recording on‑duty police in public. Record openly. If you are recording a phone call, only one party needs to consent. Stay calm and visible."
+  },
+  {
+    "state": "Pennsylvania",
+    "stateCode": "PA",
+    "consentLaw": "All-Party",
+    "legalStatus": "Established (3rd Cir.)",
+    "keyCaseOrLaw": "Fields v. Philadelphia (2017)",
+    "bufferZoneRisk": "High risk: Camera destroyed in Philadelphia incident",
+    "plainEnglishSummary": "In Pennsylvania, the 3rd Circuit has clearly protected the right to record police. However, there have been incidents where cameras were destroyed. Always auto‑sync your footage. If police try to take your phone, do not resist but shout that you do not consent."
+  },
+  {
+    "state": "Rhode Island",
+    "stateCode": "RI",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (1st Cir.)",
+    "keyCaseOrLaw": "Martin v. Rollins",
+    "bufferZoneRisk": "Standard 1-party rules",
+    "plainEnglishSummary": "In Rhode Island, you have the right to record police in public. The 1st Circuit allows even secret recording of on‑duty officers. Stay at a safe distance and do not interfere. If confronted, remain silent and ask for a lawyer."
+  },
+  {
+    "state": "South Carolina",
+    "stateCode": "SC",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (4th Cir.)",
+    "keyCaseOrLaw": "Sharpe v. Winterville",
+    "bufferZoneRisk": "Santana told to stop filming in Walter Scott case",
+    "plainEnglishSummary": "In South Carolina, the 4th Circuit protects your right to record police. However, in the Walter Scott case, a witness was told to stop filming. You have the right to continue as long as you do not interfere. Be firm but polite."
+  },
+  {
+    "state": "South Dakota",
+    "stateCode": "SD",
+    "consentLaw": "One-Party",
+    "legalStatus": "Unsettled (8th Cir.)",
+    "keyCaseOrLaw": "Molina v. Book",
+    "bufferZoneRisk": "Standard 1-party rules",
+    "plainEnglishSummary": "In South Dakota, the 8th Circuit has not clearly ruled on the right to record police. Record openly but cautiously. Do not obstruct. If an officer demands you stop, comply but ask to speak with an attorney as soon as possible."
+  },
+  {
+    "state": "Tennessee",
+    "stateCode": "TN",
+    "consentLaw": "One-Party",
+    "legalStatus": "Unsettled (6th Cir.)",
+    "keyCaseOrLaw": "25-ft law (2024)",
+    "bufferZoneRisk": "25-ft Buffer Zone in effect pending appeal 2026",
+    "plainEnglishSummary": "In Tennessee, a 25‑foot buffer zone law is in effect while an appeal is pending. If an officer orders you to step back 25 feet, you must do so. You can still record from that distance. Do not refuse to move – that could lead to arrest."
+  },
+  {
+    "state": "Texas",
+    "stateCode": "TX",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (5th Cir.)",
+    "keyCaseOrLaw": "Turner v. Driver (2017)",
+    "bufferZoneRisk": "5th Cir. warns ID not required unless arrested",
+    "plainEnglishSummary": "In Texas, the 5th Circuit has affirmed your right to record police. You do not have to show ID just for recording, unless you are under arrest. Keep your phone steady and do not interfere. If detained, remain silent and ask for a lawyer."
+  },
+  {
+    "state": "Utah",
+    "stateCode": "UT",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (10th Cir.)",
+    "keyCaseOrLaw": "Irizarry v. Yehia",
+    "bufferZoneRisk": "Standard 1-party rules",
+    "plainEnglishSummary": "In Utah, you have a clear right to record police in public. The 10th Circuit protects your right to film. Stay at a safe distance and do not physically block officers. If ordered to back up, comply but keep recording."
+  },
+  {
+    "state": "Vermont",
+    "stateCode": "VT",
+    "consentLaw": "One-Party",
+    "legalStatus": "Unsettled (2nd Cir.)",
+    "keyCaseOrLaw": "Massimino v. Benoit",
+    "bufferZoneRisk": "Follows federal default 1-party rules",
+    "plainEnglishSummary": "In Vermont, the 2nd Circuit has not fully settled the issue, but state law follows one‑party consent. You can record police in public. Do not interfere. If an officer tells you to stop, calmly state your right and ask to speak with a lawyer."
+  },
+  {
+    "state": "Virginia",
+    "stateCode": "VA",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (4th Cir.)",
+    "keyCaseOrLaw": "Sharpe v. Winterville",
+    "bufferZoneRisk": "Risk: Journalist held 2026 for curfew documentation",
+    "plainEnglishSummary": "In Virginia, the 4th Circuit protects your right to record police. However, a journalist was recently held for filming during a curfew. Always obey lawful orders to disperse, but keep recording if you safely can. Back up your footage immediately."
+  },
+  {
+    "state": "Washington",
+    "stateCode": "WA",
+    "consentLaw": "All-Party",
+    "legalStatus": "Established (9th Cir.)",
+    "keyCaseOrLaw": "Fordyce v. Seattle",
+    "bufferZoneRisk": "High risk: Protester phones held by FBI 2025",
+    "plainEnglishSummary": "In Washington, you have the right to record police, but all parties must consent in private settings. For public police encounters, record openly. There is a risk of phone seizure at protests. Use cloud sync and do not give up your passcode without a warrant."
+  },
+  {
+    "state": "West Virginia",
+    "stateCode": "WV",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (4th Cir.)",
+    "keyCaseOrLaw": "Sharpe v. Winterville",
+    "bufferZoneRisk": "Standard 1-party rules",
+    "plainEnglishSummary": "In West Virginia, the 4th Circuit protects your right to record police in public. You can film openly without permission. Stay at a safe distance and do not interfere. If an officer tries to take your phone, do not resist – state your refusal and contact a lawyer."
+  },
+  {
+    "state": "Wisconsin",
+    "stateCode": "WI",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (7th Cir.)",
+    "keyCaseOrLaw": "ACLU v. Alvarez",
+    "bufferZoneRisk": "Jacob Blake case video was vital",
+    "plainEnglishSummary": "In Wisconsin, the 7th Circuit has affirmed your right to record police. The video of the Jacob Blake shooting was crucial evidence. Record openly, stay calm, and do not obstruct. Back up your footage to the cloud immediately."
+  },
+  {
+    "state": "Wyoming",
+    "stateCode": "WY",
+    "consentLaw": "One-Party",
+    "legalStatus": "Established (10th Cir.)",
+    "keyCaseOrLaw": "Irizarry v. Yehia",
+    "bufferZoneRisk": "Standard 1-party rules",
+    "plainEnglishSummary": "In Wyoming, the 10th Circuit protects your right to record police in public. You do not need to tell them you are recording. Keep a safe distance and do not physically interfere. If detained, remain silent and ask for a lawyer."
+  }
+]

@@ -1,0 +1,137 @@
+[
+  {
+    "organization_name": "ACLU National",
+    "city": "New York",
+    "state": "NY",
+    "phone_number": "(212) 607-3300",
+    "website": "https://www.aclu.org",
+    "free_services": "Not specified",
+    "case_types": "Impact litigation, constitutional defense"
+  },
+  {
+    "organization_name": "NAACP LDF",
+    "city": "New York",
+    "state": "NY",
+    "phone_number": "(212) 965-2200",
+    "website": "https://www.naacpldf.org",
+    "free_services": "Not specified",
+    "case_types": "Criminal justice reform, racial justice"
+  },
+  {
+    "organization_name": "Legal Aid Foundation of Los Angeles (LAFLA)",
+    "city": "Los Angeles",
+    "state": "CA",
+    "phone_number": "(800) 399-4529",
+    "website": "https://www.lafla.org",
+    "free_services": "Free legal services for eligible low-income residents",
+    "case_types": "Civil rights advocacy, housing, family law, public benefits"
+  },
+  {
+    "organization_name": "Legal Aid Chicago",
+    "city": "Chicago",
+    "state": "IL",
+    "phone_number": "(312) 341-1070",
+    "website": "https://www.legalaidchicago.org",
+    "free_services": "Free legal services for people living in poverty",
+    "case_types": "Civil legal assistance, housing, family law"
+  },
+  {
+    "organization_name": "Chicago Volunteer Legal Services",
+    "city": "Chicago",
+    "state": "IL",
+    "phone_number": "(312) 332-1624",
+    "website": "https://www.cvls.org",
+    "free_services": "Pro bono representation for the working poor",
+    "case_types": "Civil legal assistance, family law, housing"
+  },
+  {
+    "organization_name": "Lone Star Legal Aid",
+    "city": "Houston",
+    "state": "TX",
+    "phone_number": "(713) 652-0077",
+    "website": "https://www.lonestarlegal.org",
+    "free_services": "Free legal services for low-income individuals",
+    "case_types": "Civil rights, consumer protection, housing"
+  },
+  {
+    "organization_name": "Texas Civil Rights Project",
+    "city": "Houston",
+    "state": "TX",
+    "phone_number": "(832) 767-3650",
+    "website": "https://www.txrights.org",
+    "free_services": "Free legal services for qualifying clients",
+    "case_types": "Systematic litigation on police accountability, voting rights, immigrant justice"
+  },
+  {
+    "organization_name": "Atlanta Legal Aid Society",
+    "city": "Atlanta",
+    "state": "GA",
+    "phone_number": "(404) 524-5811",
+    "website": "https://www.atlantalegalaid.org",
+    "free_services": "Free civil legal help for low-income people",
+    "case_types": "Civil legal help, disability rights, housing, family law"
+  },
+  {
+    "organization_name": "Community Legal Services",
+    "city": "Philadelphia",
+    "state": "PA",
+    "phone_number": "(215) 981-3700",
+    "website": "https://www.clsphila.org",
+    "free_services": "Free civil representation for low-income families",
+    "case_types": "Housing, public benefits, consumer rights, employment"
+  },
+  {
+    "organization_name": "ACLU of Pennsylvania",
+    "city": "Philadelphia",
+    "state": "PA",
+    "phone_number": "(215) 592-1513",
+    "website": "https://www.aclupa.org",
+    "free_services": "Not specified",
+    "case_types": "First Amendment litigation, police monitoring, civil liberties"
+  },
+  {
+    "organization_name": "Arizona Justice Project",
+    "city": "Phoenix",
+    "state": "AZ",
+    "phone_number": "(602) 496-1033",
+    "website": "https://www.azjusticeproject.org",
+    "free_services": "Free legal services for wrongfully convicted individuals",
+    "case_types": "Investigating wrongful convictions, police misconduct, innocence claims"
+  },
+  {
+    "organization_name": "Lakeshore Legal Aid",
+    "city": "Detroit",
+    "state": "MI",
+    "phone_number": "(888) 783-8190",
+    "website": "https://www.lakeshorelegalaid.org",
+    "free_services": "Free civil legal services for low-income individuals",
+    "case_types": "Family law, housing, individual rights, public benefits"
+  },
+  {
+    "organization_name": "Legal Aid & Defender Association",
+    "city": "Detroit",
+    "state": "MI",
+    "phone_number": "(313) 967-5800",
+    "website": "https://www.ladadetroit.org",
+    "free_services": "Free civil legal assistance for eligible residents",
+    "case_types": "Civil legal assistance in Wayne County, housing, family law, consumer rights"
+  },
+  {
+    "organization_name": "Legal Services of Greater Miami",
+    "city": "Miami",
+    "state": "FL",
+    "phone_number": "(305) 576-0080",
+    "website": "https://www.legalservicesmiami.org",
+    "free_services": "Free legal services for low-income individuals",
+    "case_types": "Consumer protection, housing, public benefits, family law"
+  },
+  {
+    "organization_name": "Dade Legal Aid Society",
+    "city": "Miami",
+    "state": "FL",
+    "phone_number": "(305) 579-5733",
+    "website": "https://www.dadelegalaid.org",
+    "free_services": "Free legal services for qualifying clients",
+    "case_types": "Domestic violence, guardianship, civil rights, housing"
+  }
+]

@@ -1,0 +1,22 @@
+{
+  "name": "Witness R.E.P",
+  "short_name": "WITNESS",
+  "description": "Record. Encrypt. Prove.",
+  "start_url": "/camera",
+  "id": "/camera",
+  "scope": "/",
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
+  "orientation": "portrait",
+  "background_color": "#0A0A0A",
+  "theme_color": "#0A0A0A",
+  "permissions": ["camera", "microphone", "geolocation"],
+  "icons": [
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
