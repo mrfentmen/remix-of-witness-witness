@@ -22,12 +22,11 @@ if (typeof window !== "undefined") {
       try {
         if (raw) {
           const parsed = JSON.parse(raw);
-          const user = parsed?.user;
           const token = parsed?.access_token ?? parsed;
           
           const isInvalidToken = typeof token !== "string" || token.split(".").length !== 3;
 
-          if (isMockId || isInvalidToken) {
+          if (isInvalidToken) {
             keysToRemove.push(key);
           }
         }
@@ -54,10 +53,12 @@ const client = createClient<Database>(
   }
 );
 
-// 3. ROBUST FETCH INTERCEPTOR
+// 3. ROBUST FETCH INTERCEPTOR (with anti-loop cooldown)
 if (typeof window !== "undefined") {
   const originalFetch = globalThis.fetch;
   let isWiping = false;
+  let lastReload = 0;
+  const RELOAD_COOLDOWN_MS = 10_000;
 
   globalThis.fetch = async (input: RequestInfo | URL, init?: RequestInit) => {
     const response = await originalFetch(input, init);
@@ -67,7 +68,13 @@ if (typeof window !== "undefined") {
       try {
         const body = await clone.json();
         if (body.code === "PGRST301" || body.message?.toLowerCase().includes("jwt")) {
+          const now = Date.now();
+          if (now - lastReload < RELOAD_COOLDOWN_MS) {
+            console.warn("[Supabase] Auth error but suppressing reload (cooldown active)");
+            return response;
+          }
           isWiping = true;
+          lastReload = now;
           console.error("[Supabase] Fatal Auth Error - Wiping Session");
           Object.keys(localStorage).forEach(key => {
             if (key.startsWith("sb-")) localStorage.removeItem(key);
