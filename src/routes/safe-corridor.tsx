@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import WitnessSafeCorridor from "@/SOS and Emergency/WitnessSafeCorridor";
+import WitnessSafeCorridor from "../_ARCHIVE/WitnessSafeCorridor";
 
 export const Route = createFileRoute("/safe-corridor")({
   head: () => ({

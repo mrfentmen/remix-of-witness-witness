@@ -395,10 +395,6 @@ function CameraScreen() {
         return;
       }
 
-        setBootChecked(true);
-        return;
-      }
-
       const {
         data: { session },
       } = await supabase.auth.getSession();

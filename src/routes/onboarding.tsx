@@ -40,11 +40,7 @@ function ProfileOnboardingScreen() {
     void (async () => {
       const { data } = await supabase.auth.getUser();
       if (!data.user) {
-        // Mock user fallback for testing without real auth if needed
-          setUser(sess.user);
-        } else {
-          void navigate({ to: "/signup" });
-        }
+        void navigate({ to: "/signup" });
       } else {
         setUser(data.user);
       }
@@ -63,17 +59,16 @@ function ProfileOnboardingScreen() {
 
     setBusy(true);
     try {
-        const { error } = await supabase
-          .from("profiles")
-          .update({
-            display_name: displayName.trim(),
-            account_type: accountType,
-            profile_complete: true,
-          })
-          .eq("user_id", user.id);
+      const { error } = await supabase
+        .from("profiles")
+        .update({
+          display_name: displayName.trim(),
+          account_type: accountType,
+          profile_complete: true,
+        })
+        .eq("user_id", user.id);
 
-        if (error) throw error;
-      }
+      if (error) throw error;
 
       setFlag(STORAGE_KEYS.onboarded, true);
       toast.success("Profile updated");
