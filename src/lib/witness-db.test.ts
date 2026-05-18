@@ -1,7 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from "vitest";
 
-}));
-
 describe("witness-db", () => {
   let dbModule: typeof import("./witness-db");
 

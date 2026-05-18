@@ -2,7 +2,7 @@
 // Self-contained TypeScript React module for journalism and media tools.
 // Features: News Tip Submission, Verified Clip Sharing, Data Insights Dashboard,
 // Breaking News Integration, Trending Incidents Feed, Source Verification Engine,
-// Media Export Package. Uses localStorage for mock Supabase data.
+// Uses localStorage for persistence. No Supabase dependency.
 // No external dependencies except React.
 
 import React, { useState, useEffect, useCallback, useRef } from "react";

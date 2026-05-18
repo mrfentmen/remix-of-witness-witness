@@ -74,6 +74,8 @@ interface StoredRecording extends RecordingMeta {
   cipher?: ArrayBuffer;
   iv?: Uint8Array;
   blob?: Blob;
+  /** Uint8Array copy of blob data — survives IndexedDB structured clone. */
+  blobBytes?: Uint8Array;
 }
 
 /** A chunk written immediately during recording so it survives crashes. */
@@ -81,6 +83,8 @@ export interface RecordingChunk {
   sessionId: string;
   seq: number;
   blob?: Blob;
+  /** Uint8Array copy of blob data — survives IndexedDB structured clone. */
+  blobBytes?: Uint8Array;
   cipher?: ArrayBuffer;
   iv?: Uint8Array;
   sizeBytes: number;
@@ -236,10 +240,13 @@ export async function saveRecordingChunk(
       });
       const buffer = await chunk.arrayBuffer();
       const { cipher, iv } = await encryptChunk(buffer, key);
-      stored.cipher = cipher;
-      stored.iv = iv;
+      // Store as plain Uint8Array — survives structured clone cross-realm.
+      stored.cipher = new Uint8Array(cipher).buffer;
+      // Note: ArrayBuffer.from() creates a real ArrayBuffer in the current realm.
+      // But since cipher might be cross-realm, use Uint8Array as intermediary.
+      stored.iv = new Uint8Array(iv);
     } else {
-      stored.blob = chunk;
+      stored.blobBytes = new Uint8Array(await chunk.arrayBuffer());
     }
 
     await db.put(CHUNKS_STORE, stored);
@@ -334,7 +341,12 @@ export async function finalizeRecordingSession(
       notes: session.notes,
       tags: session.tags,
     };
-    const stored: StoredRecording = { ...meta, cipher, iv };
+    // Store as explicit copies so cross-realm structured clone preserves data.
+    const stored: StoredRecording = {
+      ...meta,
+      cipher: new Uint8Array(cipher).slice().buffer as ArrayBuffer,
+      iv: new Uint8Array(iv),
+    };
     await db.put(RECORDINGS_STORE, stored);
     await db.delete(SESSIONS_STORE, sessionId);
     await db.delete(
@@ -346,7 +358,9 @@ export async function finalizeRecordingSession(
   } else {
     const parts: Blob[] = [];
     for (const c of chunks) {
-      if (c.blob) parts.push(c.blob);
+      const chunkBlob = c.blob;
+      if (chunkBlob) parts.push(chunkBlob);
+      else if (c.blobBytes) parts.push(new Blob([c.blobBytes], { type: session.mimeType }));
     }
     fullBlob = new Blob(parts, { type: session.mimeType });
     const sha256 = await sha256HexStreaming(fullBlob);
@@ -370,7 +384,10 @@ export async function finalizeRecordingSession(
       notes: session.notes,
       tags: session.tags,
     };
-    const stored: StoredRecording = { ...meta, blob: fullBlob };
+    const stored: StoredRecording = {
+      ...meta,
+      blobBytes: new Uint8Array(await fullBlob.arrayBuffer()),
+    };
     await db.put(RECORDINGS_STORE, stored);
     await db.delete(SESSIONS_STORE, sessionId);
     await db.delete(
@@ -437,10 +454,11 @@ export async function saveRecordingRaw(input: {
 }): Promise<void> {
   const stored: StoredRecording = { ...input.meta };
   if (input.cipher && input.iv) {
-    stored.cipher = input.cipher;
-    stored.iv = input.iv;
+    // Make in-realm copies to survive IndexedDB structured clone.
+    stored.cipher = new Uint8Array(input.cipher).slice().buffer as ArrayBuffer;
+    stored.iv = new Uint8Array(input.iv);
   } else if (input.blob) {
-    stored.blob = input.blob;
+    stored.blobBytes = new Uint8Array(await input.blob.arrayBuffer());
   }
   const db = await getDB();
   await db.put(RECORDINGS_STORE, stored);
@@ -450,7 +468,7 @@ export async function listRecordings(): Promise<RecordingMeta[]> {
   const db = await getDB();
   const all = (await db.getAll(RECORDINGS_STORE)) as StoredRecording[];
   return all
-    .map(({ cipher: _c, iv: _i, blob: _b, ...meta }) => meta)
+    .map(({ cipher: _c, iv: _i, blob: _b, blobBytes: _bb, ...meta }) => meta)
     .sort((a, b) => b.createdAt - a.createdAt);
 }
 
@@ -461,13 +479,16 @@ export async function getRecordingBlob(
   const db = await getDB();
   const rec = (await db.get(RECORDINGS_STORE, id)) as StoredRecording | undefined;
   if (!rec) return null;
-  const { cipher, iv, blob, ...meta } = rec;
+  const { cipher, iv, blob: _b, blobBytes, ...meta } = rec;
   if (rec.encrypted && cipher && iv) {
     const key = await getEncryptionKey(pin);
     const decrypted = await decryptToBlob(cipher, iv, key, meta.mimeType);
     return { meta, blob: decrypted };
   }
-  return { meta, blob: blob ?? new Blob([], { type: meta.mimeType }) };
+  const blob = blobBytes
+    ? new Blob([blobBytes], { type: meta.mimeType })
+    : _b ?? new Blob([], { type: meta.mimeType });
+  return { meta, blob };
 }
 
 export async function getRecordingRaw(
@@ -480,11 +501,14 @@ export async function getRecordingRaw(
   const db = await getDB();
   const rec = (await db.get(RECORDINGS_STORE, id)) as StoredRecording | undefined;
   if (!rec) return null;
-  const { cipher, iv, blob, ...meta } = rec;
+  const { cipher, iv, blob: _b, blobBytes, ...meta } = rec;
   if (rec.encrypted && cipher && iv) {
     return { meta, encrypted: true, cipher, iv };
   }
-  return { meta, encrypted: false, blob: blob ?? new Blob([], { type: meta.mimeType }) };
+  const blob = blobBytes
+    ? new Blob([blobBytes], { type: meta.mimeType })
+    : _b ?? new Blob([], { type: meta.mimeType });
+  return { meta, encrypted: false, blob };
 }
 
 export async function deleteRecording(id: string): Promise<void> {
@@ -521,7 +545,7 @@ export async function updateRecordingDetails(
     tags: patch.tags !== undefined ? patch.tags : (rec.tags ?? null),
   };
   await db.put(RECORDINGS_STORE, next);
-  const { cipher: _c, iv: _i, blob: _b, ...meta } = next;
+  const { cipher: _c, iv: _i, blob: _b, blobBytes: _bb, ...meta } = next;
   void syncRecordingMetadata(meta).catch(() => {});
   return meta;
 }

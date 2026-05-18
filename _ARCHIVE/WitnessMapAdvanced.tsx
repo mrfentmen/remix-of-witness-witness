@@ -82,15 +82,14 @@ const initialCategories: IncidentCategory[] = [
   { id: "cat4", name: "Domestic", selected: false },
 ];
 
-// Mock Supabase
-const supabaseMock = {
-  from: (table: string) => ({
-    insert: async (data: unknown) => {
-      console.log(`[Witness DB] Entry added to ${table}`, data);
-      return { error: null };
-    },
-  }),
-};
+// Local storage helper (replaces mock Supabase)
+const storeReport = (pinId: string, reason: string) => {
+  try {
+    const stored = JSON.parse(localStorage.getItem("witness_reports") || "[]");
+    stored.push({ pinId, reason, timestamp: Date.now() });
+    localStorage.setItem("witness_reports", JSON.stringify(stored));
+  } catch {}
+}
 
 // ------------------------------
 // SECTION: Icons (Vanilla SVG)
@@ -369,7 +368,7 @@ export function ReportPinModal({
         <div className="flex gap-4">
           <button
             onClick={async () => {
-              await supabaseMock.from("reports").insert({ pin: pin.id, reason });
+              storeReport(pin.id, reason)
               onReported();
               onClose();
             }}

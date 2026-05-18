@@ -2,7 +2,7 @@
 // Self-contained TypeScript React module for Witness R.E.P verification and trust features.
 // Includes Verified Badges System, Organization Account Management, Report & Moderation,
 // Deepfake Detection, AI Incident Summary, Zero Knowledge Proof Verification.
-// Uses localStorage for mock Supabase data. No external dependencies except React and Tailwind.
+// Uses localStorage for state management. No external dependencies except React and Tailwind.
 
 import React, { useState, useEffect, useCallback } from "react";
 

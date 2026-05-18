@@ -3,6 +3,9 @@ import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 import { renderHook, act, waitFor } from "@testing-library/react";
 import { useMediaRecorder } from "./use-media-recorder";
 
+vi.mock("@/lib/witness-db", () => ({
+  startRecordingSession: vi.fn().mockResolvedValue("session-123"),
+  saveRecordingChunk: vi.fn().mockResolvedValue({
     id: "session-123",
     createdAt: Date.now(),
     durationMs: 1000,
@@ -13,19 +16,24 @@ import { useMediaRecorder } from "./use-media-recorder";
     gps: null,
     thumbnailDataUrl: null,
   }),
-    meta: {
-      id: "session-123",
-      createdAt: Date.now(),
-      durationMs: 1000,
-      mimeType: "video/webm",
-      sizeBytes: 1024,
-      sha256: "abc",
-      encrypted: false,
-      gps: null,
-      thumbnailDataUrl: null,
-    },
-    blob: new Blob(["test"], { type: "video/webm" }),
+  finalizeRecordingSession: vi.fn().mockResolvedValue({
+    id: "session-123",
+    createdAt: Date.now(),
+    durationMs: 1000,
+    mimeType: "video/webm",
+    sizeBytes: 1024,
+    sha256: "abc",
+    encrypted: false,
+    gps: null,
+    thumbnailDataUrl: null,
   }),
+  recoverUnfinalizedSessions: vi.fn(),
+  discardSession: vi.fn(),
+  getRecordingBlob: vi.fn().mockResolvedValue({
+    blob: new Blob(["test"], { type: "video/webm" }),
+    mimeType: "video/webm",
+  }),
+  __resetDBForTests: vi.fn(),
 }));
 
 class MockBlobEvent extends Event {
@@ -170,6 +178,7 @@ describe("useMediaRecorder", () => {
 
   it("shows recoverable session when unfinalized sessions exist", async () => {
     const dbModule = await import("@/lib/witness-db");
+    vi.mocked(dbModule.recoverUnfinalizedSessions).mockResolvedValue([
       {
         sessionId: "crash-id",
         startedAt: Date.now() - 60000,
@@ -202,6 +211,7 @@ describe("useMediaRecorder", () => {
 
   it("dismisses recovery session", async () => {
     const dbModule = await import("@/lib/witness-db");
+    vi.mocked(dbModule.recoverUnfinalizedSessions).mockResolvedValue([
       {
         sessionId: "discard-id",
         startedAt: Date.now() - 30000,

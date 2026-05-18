@@ -1,14 +1,26 @@
 // @vitest-environment jsdom
+import "fake-indexeddb/auto";
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
+
+/**
+ * Read a Blob to text in a way that works across environments.
+ */
+async function readBlobText(blob: Blob): Promise<string> {
+  if (typeof blob.text === "function") {
+    return await blob.text();
+  }
+  const buf = await blob.arrayBuffer();
+  return new TextDecoder().decode(buf);
+}
 import { renderHook, act, waitFor, cleanup } from "@testing-library/react";
 import { useMediaRecorder } from "@/hooks/use-media-recorder";
 import * as witnessDb from "@/lib/witness-db";
 import type { RecordingMeta } from "@/lib/witness-db";
 
+
 /* ------------------------------------------------------------------
  * Mock the cloud layer so the test stays offline / fast.
  * ------------------------------------------------------------------ */
-}));
 
 /* ------------------------------------------------------------------
  * Mock MediaRecorder & MediaStream (not available in jsdom).
@@ -190,7 +202,7 @@ describe("Recording-to-Vault Integration", () => {
 
     const retrieved = await witnessDb.getRecordingBlob(vault[0].id);
     expect(retrieved).not.toBeNull();
-    const text = await retrieved!.blob.text();
+    const text = await readBlobText(retrieved!.blob);
     expect(text).toBe("alphabravo");
   });
 
@@ -233,7 +245,7 @@ describe("Recording-to-Vault Integration", () => {
 
     const decrypted = await witnessDb.getRecordingBlob(vault[0].id, "witness-pin");
     expect(decrypted).not.toBeNull();
-    const text = await decrypted!.blob.text();
+    const text = await readBlobText(decrypted!.blob);
     expect(text).toBe("secret-chunk-1secret-chunk-2");
 
     await expect(witnessDb.getRecordingBlob(vault[0].id, "wrong-pin")).rejects.toThrow();
@@ -277,7 +289,7 @@ describe("Recording-to-Vault Integration", () => {
     await waitForVaultCount(1);
 
     const blob = await witnessDb.getRecordingBlob((await witnessDb.listRecordings())[0].id);
-    const text = await blob!.blob.text();
+    const text = await readBlobText(blob!.blob);
     expect(text).toBe("before-pauseafter-resume");
   });
 
@@ -335,7 +347,7 @@ describe("Recording-to-Vault Integration", () => {
 
     const vault = await witnessDb.listRecordings();
     const blob = await witnessDb.getRecordingBlob(vault[0].id);
-    const text = await blob!.blob.text();
+    const text = await readBlobText(blob!.blob);
     expect(text).toBe("crash-chunk-1crash-chunk-2");
   });
 
@@ -369,7 +381,7 @@ describe("Recording-to-Vault Integration", () => {
 
     const vault = await witnessDb.listRecordings();
     const blob = await witnessDb.getRecordingBlob(vault[0].id);
-    const text = await blob!.blob.text();
+    const text = await readBlobText(blob!.blob);
     expect(text).toBe("partial-1partial-2");
   });
 

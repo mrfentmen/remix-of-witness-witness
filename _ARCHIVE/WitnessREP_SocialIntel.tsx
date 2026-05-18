@@ -2,7 +2,7 @@
 // Self‑contained TypeScript React module for social intelligence & advanced map.
 // Includes: Witness Network proximity, neighborhood alerts, map controls,
 // comment section, SOS history, trust engine, notification center, location privacy gate.
-// Uses Tailwind CSS, vanilla SVG icons, mock Supabase data. Exports all components and hooks.
+// Exports all components and hooks. Uses localStorage for state. No Supabase dependency.
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import type { JSX } from "react";

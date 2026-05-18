@@ -2,7 +2,7 @@
 // Self-contained TypeScript React module for Witness R.E.P monetization and growth features.
 // Includes: Voluntary Donation (Stripe placeholder), Crypto Donation (BTC/ETH with QR placeholder),
 // Referral System, Witness Points System, Achievement Badges, Monthly Personal Report, Grant Tracker.
-// Uses localStorage for mock Supabase data. No external dependencies except React.
+// Uses localStorage for state management. No external dependencies except React.
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 
@@ -66,9 +66,9 @@ export interface GrantApplication {
   link: string;
 }
 
-// Mock user ID (in real app from auth)
-const MOCK_USER_ID = "user_123";
-const MOCK_USER_NAME = "Witness User";
+// Demo user ID placeholder (replaced by real auth in production)
+const DEMO_USER_ID = "user_demo";
+const DEMO_USER_NAME = "Demo User";
 
 // Helper: generate random ID
 const genId = () => `${Date.now()}-${Math.random().toString(36).substring(2, 10)}`;
@@ -385,13 +385,13 @@ export const CryptoDonation: React.FC = () => {
 // SECTION: REFERRAL SYSTEM
 // ------------------------------
 export const useReferralSystem = () => {
-  const [profile, setProfile] = useState<UserProfile>(() => getUserProfile(MOCK_USER_ID));
+  const [profile, setProfile] = useState<UserProfile>(() => getUserProfile(DEMO_USER_ID));
   const [referrals, setReferrals] = useState<ReferralRelationship[]>([]);
 
   const refresh = useCallback(() => {
-    const prof = getUserProfile(MOCK_USER_ID);
+    const prof = getUserProfile(DEMO_USER_ID);
     setProfile(prof);
-    setReferrals(getReferralRelationships().filter((r) => r.referrerId === MOCK_USER_ID));
+    setReferrals(getReferralRelationships().filter((r) => r.referrerId === DEMO_USER_ID));
   }, []);
 
   useEffect(() => {
@@ -457,7 +457,7 @@ export const ReferralUI: React.FC = () => {
             <span className="text-red-500 font-bold">29 Refs</span>
           </div>
           <div className="flex justify-between text-sm py-1">
-            <span className="text-zinc-300">You ({MOCK_USER_NAME})</span>
+            <span className="text-zinc-300">You ({DEMO_USER_NAME})</span>
             <span className="text-red-500 font-bold">{activeCount} Refs</span>
           </div>
         </div>
@@ -470,12 +470,12 @@ export const ReferralUI: React.FC = () => {
 // SECTION: WITNESS POINTS SYSTEM
 // ------------------------------
 export const usePointsSystem = () => {
-  const [profile, setProfile] = useState<UserProfile>(() => getUserProfile(MOCK_USER_ID));
+  const [profile, setProfile] = useState<UserProfile>(() => getUserProfile(DEMO_USER_ID));
   const [pointsLog, setPointsLog] = useState<PointsLogEntry[]>([]);
 
   const refresh = useCallback(() => {
-    setProfile(getUserProfile(MOCK_USER_ID));
-    setPointsLog(getPointsLog(MOCK_USER_ID));
+    setProfile(getUserProfile(DEMO_USER_ID));
+    setPointsLog(getPointsLog(DEMO_USER_ID));
   }, []);
 
   useEffect(() => {
@@ -483,7 +483,7 @@ export const usePointsSystem = () => {
   }, [refresh]);
 
   const simulateAction = (action: string, pts: number) => {
-    awardPointsAndCheckBadges(MOCK_USER_ID, action, pts);
+    awardPointsAndCheckBadges(DEMO_USER_ID, action, pts);
     refresh();
   };
 
@@ -574,10 +574,10 @@ const BADGE_DEFS = [
 ];
 
 export const BadgesUI: React.FC = () => {
-  const [profile, setProfile] = useState<UserProfile>(() => getUserProfile(MOCK_USER_ID));
+  const [profile, setProfile] = useState<UserProfile>(() => getUserProfile(DEMO_USER_ID));
 
   useEffect(() => {
-    const check = () => setProfile(getUserProfile(MOCK_USER_ID));
+    const check = () => setProfile(getUserProfile(DEMO_USER_ID));
     const interval = setInterval(check, 2000);
     return () => clearInterval(interval);
   }, []);
@@ -619,13 +619,13 @@ export const MonthlyReportUI: React.FC = () => {
   useEffect(() => {
     const now = new Date();
     const ym = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
-    const stored = getMonthlyReport(MOCK_USER_ID, ym);
+    const stored = getMonthlyReport(DEMO_USER_ID, ym);
     if (stored) {
       setReport(stored);
     } else {
-      const logs = getPointsLog(MOCK_USER_ID);
+      const logs = getPointsLog(DEMO_USER_ID);
       const newReport: MonthlyReport = {
-        userId: MOCK_USER_ID,
+        userId: DEMO_USER_ID,
         yearMonth: ym,
         totalRecordings: logs.filter((l) => l.action === "recording").length,
         totalDurationSec: logs.filter((l) => l.action === "recording").length * 45,

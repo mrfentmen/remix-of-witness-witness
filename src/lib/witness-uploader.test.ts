@@ -1,15 +1,8 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 
-    uploadUrl: "https://s3.example.com/upload",
-  }),
-}));
-
-}));
-
-}));
-
-}));
-
+vi.mock("@/lib/witness-storage", () => ({
+  getString: vi.fn().mockReturnValue(null),
+  getFlagWithDefault: vi.fn().mockReturnValue(false),
   setString: vi.fn(),
   STORAGE_KEYS: {
     wifiOnly: "@Witness_wifiOnly",
@@ -17,7 +10,24 @@ import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
   },
 }));
 
+vi.mock("@/lib/witness-db", () => ({
   getRecordingRaw: vi.fn(),
+}));
+
+vi.mock("@/lib/network", () => ({
+  isWifiOrUnknown: vi.fn().mockReturnValue(true),
+}));
+
+vi.mock("@/lib/s3-upload.functions", () => ({
+  getS3SignedUploadUrl: vi.fn().mockResolvedValue({ uploadUrl: "https://example.com/upload" }),
+}));
+
+vi.mock("@/lib/cloud-recordings", () => ({
+  syncRecordingS3Key: vi.fn().mockResolvedValue(undefined),
+}));
+
+vi.mock("@/lib/pwa", () => ({
+  requestBackgroundSync: vi.fn(),
 }));
 
 interface MockXHR {
@@ -48,10 +58,9 @@ function createMockXHR() {
     onabort: null,
     onloadend: null,
   };
-    setTimeout(() => {
-      if (xhr.onload) xhr.onload();
-    }, 10);
-  });
+  setTimeout(() => {
+    if (xhr.onload) xhr.onload();
+  }, 10);
   return xhr;
 }
 
@@ -63,19 +72,16 @@ describe("witness-uploader", () => {
     vi.resetModules();
     localStorage.clear();
 
-    uploaderModule = await import("./witness-uploader");
-    dbModule = await import("./witness-db");
-
-
     vi.stubGlobal("XMLHttpRequest", function MockXMLHttpRequest() {
       return createMockXHR();
     } as unknown as typeof XMLHttpRequest);
 
-    const { isWifiOrUnknown } = await import("./network");
-    const { getFlagWithDefault } = await import("./witness-storage");
+    uploaderModule = await import("./witness-uploader");
+    dbModule = await import("./witness-db");
   });
 
   afterEach(() => {
+    vi.restoreAllMocks();
     vi.unstubAllGlobals();
   });
 
@@ -103,6 +109,7 @@ describe("witness-uploader", () => {
     const cipher = new Uint8Array([1, 2, 3]).buffer;
     const iv = new Uint8Array([4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]);
 
+    vi.mocked(dbModule.getRecordingRaw).mockResolvedValue({
       meta: {
         id: "rec-1",
         createdAt: Date.now(),
@@ -117,7 +124,7 @@ describe("witness-uploader", () => {
       encrypted: true,
       cipher,
       iv,
-    } as unknown);
+    } as any);
 
     const { uploadRecording, getUploadState } = uploaderModule;
     await uploadRecording("rec-1");
@@ -127,8 +134,10 @@ describe("witness-uploader", () => {
 
   it("uploadRecording respects WiFi-only gate", async () => {
     const networkModule = await import("./network");
+    vi.mocked(networkModule.isWifiOrUnknown).mockReturnValue(false);
 
     const storageModule = await import("./witness-storage");
+    vi.mocked(storageModule.getFlagWithDefault).mockReturnValue(true);
 
     const { uploadRecording, getUploadState } = uploaderModule;
     await uploadRecording("rec-wifi");
@@ -136,16 +145,21 @@ describe("witness-uploader", () => {
   });
 
   it("retryPendingUploads retries errored uploads", async () => {
+    // Explicitly reset mocks to prevent cross-test leakage
+    vi.mocked(dbModule.getRecordingRaw).mockReset();
+    const storageModule = await import("./witness-storage");
+    vi.mocked(storageModule.getFlagWithDefault).mockReset();
 
     const { uploadRecording, retryPendingUploads, getUploadState } = uploaderModule;
 
     try {
       await uploadRecording("retry-id");
     } catch {
-      /* expected */
+      /* expected — recording not found */
     }
     expect(getUploadState("retry-id").status).toBe("error");
 
+    vi.mocked(dbModule.getRecordingRaw).mockResolvedValue({
       meta: {
         id: "retry-id",
         createdAt: Date.now(),
@@ -159,7 +173,7 @@ describe("witness-uploader", () => {
       },
       encrypted: false,
       blob: new Blob(["x"], { type: "video/webm" }),
-    } as unknown);
+    } as any);
 
     await retryPendingUploads();
     expect(getUploadState("retry-id").status).toBe("done");
