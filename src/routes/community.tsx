@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import WitnessCommunityAlert from "@/Community, Social, and Journalism/WitnessCommunityAlert";
+import WitnessCommunityAlert from "../../_ARCHIVE/WitnessCommunityAlert";
 
 export const Route = createFileRoute("/community")({
   head: () => ({

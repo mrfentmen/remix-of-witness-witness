@@ -205,6 +205,7 @@ const chunkSaveQueues = new Map<string, Promise<void>>();
 /** Persist a single chunk immediately to IndexedDB.
  *  Chunk saves for the same sessionId are automatically serialized so
  *  seq numbers and chunkCount stay correct even under rapid back-to-back
+ */
 export async function saveRecordingChunk(
   sessionId: string,
   chunk: Blob,

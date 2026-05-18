@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import MainApp from "@/Evidence Forensics and Legal/WitnessLegalCourt";
+import MainApp from "../../_ARCHIVE/WitnessLegalCourt";
 
 export const Route = createFileRoute("/legal-tools")({
   head: () => ({

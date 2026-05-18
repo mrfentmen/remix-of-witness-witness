@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import MainApp from "@/Evidence Forensics and Legal/WitnessEvidenceForensics";
+import MainApp from "../../_ARCHIVE/WitnessAIForensics";
 
 export const Route = createFileRoute("/forensics")({
   head: () => ({

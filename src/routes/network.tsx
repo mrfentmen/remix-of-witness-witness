@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import WitnessNetwork from "@/SOS and Emergency/WitnessNetwork";
+import WitnessNetwork from "../../_ARCHIVE/WitnessNetwork";
 
 export const Route = createFileRoute("/network")({
   head: () => ({

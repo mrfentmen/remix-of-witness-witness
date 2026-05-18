@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import MainApp from "@/Privacy and Advanced Security/WitnessPrivacyPro";
+import MainApp from "../../_ARCHIVE/WitnessPrivacyPro";
 
 export const Route = createFileRoute("/privacy")({
   head: () => ({

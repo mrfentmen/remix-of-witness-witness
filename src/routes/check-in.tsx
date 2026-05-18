@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import WitnessScheduledCheckIn from "@/SOS and Emergency/WitnessScheduledCheckIn";
+import WitnessScheduledCheckIn from "../../_ARCHIVE/WitnessScheduledCheckIn";
 
 export const Route = createFileRoute("/check-in")({
   head: () => ({
