@@ -35,8 +35,8 @@ jobs:
       - name: Run tests
         run: bun run test:run --exclude src/test/integration/recording-to-vault.test.ts
 
-      - name: Run integration tests (excluding pre-existing encrypted timeout)
-        run: bun run test:run src/test/integration/recording-to-vault.test.ts -t "^(?!.*encrypted)"
+      - name: Run integration tests
+        run: bun run test:run src/test/integration/recording-to-vault.test.ts
 
       - name: Build
         run: bun run build

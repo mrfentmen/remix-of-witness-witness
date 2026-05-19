@@ -125,6 +125,24 @@ export function __resetDBForTests(): void {
   dbPromise = null;
 }
 
+/**
+ * Create an in-realm copy of a cross-realm ArrayBuffer by copying bytes.
+ * This is needed because fake-indexeddb returns typed arrays from a
+ * different realm, and @peculiar/webcrypto uses instanceof internally.
+ */
+function toInRealmArrayBuffer(ab: ArrayBuffer): ArrayBuffer {
+  const copy = new Uint8Array(ab.byteLength);
+  copy.set(new Uint8Array(ab));
+  return copy.buffer as ArrayBuffer;
+}
+
+/** Create an in-realm copy of a cross-realm Uint8Array. */
+function toInRealmUint8Array(u8: Uint8Array): Uint8Array {
+  const copy = new Uint8Array(u8.byteLength);
+  copy.set(u8);
+  return copy;
+}
+
 /** Access the raw DB instance (tests only). */
 export function getDB() {
   if (!dbPromise) {
@@ -313,7 +331,11 @@ export async function finalizeRecordingSession(
     const decryptedParts: Blob[] = [];
     for (const c of chunks) {
       if (!c.cipher || !c.iv) continue;
-      const plain = await decryptChunk(c.cipher, c.iv, key);
+      // Create in-realm copies — cross-realm typed arrays from
+      // fake-indexeddb are rejected by @peculiar/webcrypto instanceof checks.
+      const safeCipher = toInRealmArrayBuffer(c.cipher);
+      const safeIv = toInRealmUint8Array(c.iv);
+      const plain = await decryptChunk(safeCipher, safeIv, key);
       decryptedParts.push(new Blob([plain], { type: session.mimeType }));
     }
     fullBlob = new Blob(decryptedParts, { type: session.mimeType });
@@ -482,7 +504,10 @@ export async function getRecordingBlob(
   const { cipher, iv, blob: _b, blobBytes, ...meta } = rec;
   if (rec.encrypted && cipher && iv) {
     const key = await getEncryptionKey(pin);
-    const decrypted = await decryptToBlob(cipher, iv, key, meta.mimeType);
+    // In-realm copies for cross-realm safe crypto.subtle calls
+    const safeCipher = toInRealmArrayBuffer(cipher);
+    const safeIv = toInRealmUint8Array(iv);
+    const decrypted = await decryptToBlob(safeCipher, safeIv, key, meta.mimeType);
     return { meta, blob: decrypted };
   }
   const blob = blobBytes

@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import "fake-indexeddb/auto";
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
+import { __setPBKDF2Iters } from "@/lib/witness-crypto";
 
 /**
  * Read a Blob to text in a way that works across environments.
@@ -106,6 +107,8 @@ class MockMediaStream {
 
 describe("Recording-to-Vault Integration", () => {
   beforeEach(async () => {
+    // Reduce PBKDF2 iterations for fast test execution (pure-JS WebCrypto is slow)
+    __setPBKDF2Iters(10);
     localStorage.clear();
     witnessDb.__resetDBForTests();
     const db = await witnessDb.getDB();

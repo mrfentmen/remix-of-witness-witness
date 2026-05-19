@@ -5,7 +5,16 @@
 const PIN_SALT_KEY = "@Witness_pinsalt";
 const DEVKEY_KEY = "@Witness_devkey";
 const MASTER_KEY_LS = "@Witness_master";
-const PBKDF2_ITERS = 150_000;
+let PBKDF2_ITERS = 150_000;
+
+/**
+ * Override PBKDF2 iterations for tests. The default 150k iterations is
+ * appropriate for production but extremely slow in pure-JS WebCrypto
+ * polyfills (used in jsdom test environment), causing test timeouts.
+ */
+export function __setPBKDF2Iters(n: number): void {
+  PBKDF2_ITERS = n;
+}
 
 function b64encode(buf: ArrayBuffer | Uint8Array): string {
   const bytes = buf instanceof Uint8Array ? buf : new Uint8Array(buf);
