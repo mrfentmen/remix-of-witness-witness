@@ -83,7 +83,7 @@ export function useLanguage(): Language {
       return () => listeners.delete(cb);
     },
     () => current,
-    () => "en",
+    () => current,
   );
 }
 

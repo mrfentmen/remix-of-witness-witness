@@ -82,7 +82,7 @@ export function useA11y(): A11yConfig {
       return () => listeners.delete(cb);
     },
     () => current,
-    () => DEFAULTS,
+    () => current,
   );
 }
 

@@ -52,6 +52,6 @@ export function useTheme(): Theme {
       return () => listeners.delete(cb);
     },
     () => cache,
-    () => "dark",
+    () => cache,
   );
 }

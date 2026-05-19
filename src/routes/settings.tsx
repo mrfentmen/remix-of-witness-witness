@@ -1,6 +1,6 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { ScreenHeader } from "@/components/witness/screen-header";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 import {
   AlertTriangle,
@@ -148,21 +148,12 @@ function SettingsScreen() {
 }
 
 function SettingsContent() {
-  // Add initialization guard
-  const [loading, setLoading] = useState(true);
   const settings = useSettings();
   const theme = useTheme();
   const { user } = useSession();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setLoading(false);
-  }, []);
-
-  if (loading) {
-    return <div className="p-6 text-center">Loading settings...</div>;
-  }
-
+  // All hooks MUST be declared before any early return to satisfy React's rules.
   const [wiping, setWiping] = useState(false);
   const [homeAddress, setHomeAddressState] = useState("");
   const [savingAddress, setSavingAddress] = useState(false);
@@ -181,8 +172,11 @@ function SettingsContent() {
   const [clearingCache, setClearingCache] = useState(false);
   const hasPin = useMemo(() => !!getString(STORAGE_KEYS.pin), []);
 
+  // Load profile on mount
+  const profileFetched = useRef(false);
   useEffect(() => {
-    if (!user) return;
+    if (!user || profileFetched.current) return;
+    profileFetched.current = true;
     getMyProfile()
       .then((p) => {
         setHomeAddressState(p?.homeAddress ?? "");
@@ -210,7 +204,11 @@ function SettingsContent() {
       console.error("refreshStorage failed:", err);
     }
   }
+  // Load storage stats on mount
+  const storageFetched = useRef(false);
   useEffect(() => {
+    if (storageFetched.current) return;
+    storageFetched.current = true;
     void refreshStorage();
   }, []);
 
