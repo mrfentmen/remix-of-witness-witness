@@ -325,27 +325,40 @@ function PinGate({ onUnlocked }: { onUnlocked: (vaultType: "real" | "decoy") => 
         </div>
 
         {forgotStep === "email" && (
-          <>
+          <form
+            className="flex w-full flex-col gap-3"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleForgotSend();
+            }}
+          >
             <input
               type="email"
               placeholder="Your email"
               value={forgotEmail}
               onChange={(e) => setForgotEmail(e.target.value)}
               className="h-11 w-full rounded-xl border border-border bg-background px-3 text-sm outline-none focus:border-primary"
+              id="forgot-email"
+              name="forgotEmail"
             />
             <button
-              type="button"
-              onClick={handleForgotSend}
+              type="submit"
               disabled={forgotSending || !forgotEmail.trim()}
               className="h-11 w-full rounded-xl bg-primary text-sm font-bold uppercase tracking-wider text-primary-foreground transition active:scale-95 disabled:opacity-50"
             >
               {forgotSending ? "Sending…" : "Send code"}
             </button>
-          </>
+          </form>
         )}
 
         {forgotStep === "token" && (
-          <>
+          <form
+            className="flex w-full flex-col gap-3"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleForgotVerify();
+            }}
+          >
             <p className="text-xs text-muted-foreground">Enter the code sent to {forgotEmail}</p>
             <input
               type="text"
@@ -353,10 +366,11 @@ function PinGate({ onUnlocked }: { onUnlocked: (vaultType: "real" | "decoy") => 
               value={forgotToken}
               onChange={(e) => setForgotToken(e.target.value.replace(/\D/g, "").slice(0, 6))}
               className="h-11 w-full rounded-xl border border-border bg-background px-3 text-center font-mono text-lg tracking-[0.4em] outline-none focus:border-primary"
+              id="forgot-token"
+              name="forgotToken"
             />
             <button
-              type="button"
-              onClick={handleForgotVerify}
+              type="submit"
               disabled={forgotVerifying || forgotToken.length !== 6}
               className="h-11 w-full rounded-xl bg-primary text-sm font-bold uppercase tracking-wider text-primary-foreground transition active:scale-95 disabled:opacity-50"
             >
@@ -370,11 +384,17 @@ function PinGate({ onUnlocked }: { onUnlocked: (vaultType: "real" | "decoy") => 
             >
               Re-send code
             </button>
-          </>
+          </form>
         )}
 
         {forgotStep === "newPin" && (
-          <>
+          <form
+            className="flex w-full flex-col gap-3"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleForgotSetPin();
+            }}
+          >
             <p className="text-xs text-muted-foreground">Set a new 4-digit PIN for your vault</p>
             <input
               type="password"
@@ -383,16 +403,18 @@ function PinGate({ onUnlocked }: { onUnlocked: (vaultType: "real" | "decoy") => 
               value={forgotNewPin}
               onChange={(e) => setForgotNewPin(e.target.value.replace(/\D/g, "").slice(0, 4))}
               className="h-11 w-full rounded-xl border border-border bg-background px-3 text-center font-mono text-xl tracking-[0.5em] outline-none focus:border-primary"
+              id="forgot-new-pin"
+              name="forgotNewPin"
+              autoComplete="off"
             />
             <button
-              type="button"
-              onClick={handleForgotSetPin}
+              type="submit"
               disabled={forgotNewPin.length !== 4}
               className="h-11 w-full rounded-xl bg-primary text-sm font-bold uppercase tracking-wider text-primary-foreground transition active:scale-95 disabled:opacity-50"
             >
               Set PIN
             </button>
-          </>
+          </form>
         )}
 
         <button
@@ -829,6 +851,8 @@ function VaultList({
             value={search}
             onChange={(e) => setSearch(sanitizeText(e.target.value, 200))}
             className="w-full rounded-xl border border-input bg-background py-2.5 pl-10 pr-3 text-sm outline-none focus:border-primary"
+            id="vault-search"
+            name="search"
           />
         </div>
         <div className="flex flex-wrap items-center gap-2">
@@ -836,6 +860,8 @@ function VaultList({
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
             className="rounded-lg border border-input bg-background px-2.5 py-1.5 text-[10px] font-bold uppercase outline-none focus:border-primary"
+            id="vault-category-filter"
+            name="categoryFilter"
           >
             <option value="all">All Categories</option>
             {RECORDING_CATEGORIES.map((c) => (

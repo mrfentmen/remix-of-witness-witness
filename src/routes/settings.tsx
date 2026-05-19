@@ -512,6 +512,8 @@ function SettingsContent() {
                 maxLength={240}
                 placeholder="123 Main St, Apt 4, Brooklyn NY"
                 className="mt-3 w-full resize-none rounded-xl border border-border bg-background p-3 text-sm outline-none focus:border-primary"
+                id="home-address"
+                name="homeAddress"
               />
               {addressDirty && (
                 <button
@@ -1285,14 +1287,15 @@ function DeleteAccountSheet({
         </p>
         <p className="mt-3 text-[11px] uppercase tracking-[0.2em] text-muted-foreground">
           Type <span className="text-primary">DELETE</span> to confirm
-        </p>
-        <input
-          autoFocus
-          value={confirm}
-          onChange={(e) => setConfirm(e.target.value)}
-          placeholder="DELETE"
-          className="mt-2 h-11 w-full rounded-xl border border-border bg-background px-3 text-sm tracking-widest outline-none focus:border-primary"
-        />
+        </p>          <input
+            autoFocus
+            value={confirm}
+            onChange={(e) => setConfirm(e.target.value)}
+            placeholder="DELETE"
+            className="mt-2 h-11 w-full rounded-xl border border-border bg-background px-3 text-sm tracking-widest outline-none focus:border-primary"
+            id="delete-confirm"
+            name="deleteConfirm"
+          />
         <div className="mt-4 grid grid-cols-2 gap-2">
           <button
             type="button"
@@ -1366,7 +1369,13 @@ function ChangePinSection() {
       </div>
 
       {step === "current" && (
-        <div className="mt-3 space-y-2">
+        <form
+          className="mt-3 space-y-2"
+          onSubmit={(e) => {
+            e.preventDefault();
+            verifyCurrent();
+          }}
+        >
           <input
             type="password"
             maxLength={4}
@@ -1374,21 +1383,29 @@ function ChangePinSection() {
             value={currentPin}
             onChange={(e) => setCurrentPin(e.target.value.replace(/\D/g, "").slice(0, 4))}
             className="h-10 w-full rounded-xl border border-border bg-background px-3 text-center font-mono text-lg tracking-[0.4em] outline-none focus:border-primary"
+            id="current-pin"
+            name="currentPin"
+            autoComplete="off"
           />
           {error && <p className="text-xs text-primary">{error}</p>}
           <button
-            type="button"
-            onClick={verifyCurrent}
+            type="submit"
             disabled={currentPin.length !== 4}
             className="h-10 w-full rounded-xl bg-primary text-xs font-bold uppercase tracking-wider text-primary-foreground active:scale-95 disabled:opacity-50"
           >
             Verify
           </button>
-        </div>
+        </form>
       )}
 
       {step === "new" && (
-        <div className="mt-3 space-y-2">
+        <form
+          className="mt-3 space-y-2"
+          onSubmit={(e) => {
+            e.preventDefault();
+            saveNewPin();
+          }}
+        >
           <input
             type="password"
             maxLength={4}
@@ -1396,6 +1413,9 @@ function ChangePinSection() {
             value={newPin}
             onChange={(e) => setNewPin(e.target.value.replace(/\D/g, "").slice(0, 4))}
             className="h-10 w-full rounded-xl border border-border bg-background px-3 text-center font-mono text-lg tracking-[0.4em] outline-none focus:border-primary"
+            id="new-pin"
+            name="newPin"
+            autoComplete="off"
           />
           <input
             type="password"
@@ -1404,11 +1424,13 @@ function ChangePinSection() {
             value={confirmPin}
             onChange={(e) => setConfirmPin(e.target.value.replace(/\D/g, "").slice(0, 4))}
             className="h-10 w-full rounded-xl border border-border bg-background px-3 text-center font-mono text-lg tracking-[0.4em] outline-none focus:border-primary"
+            id="confirm-pin"
+            name="confirmPin"
+            autoComplete="off"
           />
           {error && <p className="text-xs text-primary">{error}</p>}
           <button
-            type="button"
-            onClick={saveNewPin}
+            type="submit"
             disabled={newPin.length !== 4 || confirmPin.length !== 4}
             className="h-10 w-full rounded-xl bg-primary text-xs font-bold uppercase tracking-wider text-primary-foreground active:scale-95 disabled:opacity-50"
           >
@@ -1424,7 +1446,7 @@ function ChangePinSection() {
           >
             Cancel
           </button>
-        </div>
+        </form>
       )}
     </div>
   );
