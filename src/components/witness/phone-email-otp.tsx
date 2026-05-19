@@ -122,7 +122,7 @@ export function PhoneEmailOtp({
               onChange={(e) => {
                 setPhone(e.target.value);
               }}
-              placeholder="917 655 3924"
+              placeholder="+1 (234) 567-8910"
               className="h-14 w-full rounded-2xl border border-border bg-card px-4 text-base text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
             />
           </div>
